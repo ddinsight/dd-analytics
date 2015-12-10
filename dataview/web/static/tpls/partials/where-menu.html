@@ -1,0 +1,13 @@
+<li>
+    <span><i class="fa fa-lg fa-minus-circle"></i> Filters</span>
+    <ul>
+        <li ng-model="wheremenus" ng-repeat="menu in wheremenus track by $index">
+            <span><i class="fa fa-lg fa-plus-circle"></i> {{menu.nm}} </span>
+            <ul>
+                <li style="display:none" ng-repeat="sub in menu.sub track by sub.id">
+                    <span> <label class="checkbox inline-block"><input type="checkbox" name="checkbox-inline" ng-checked="sub.checked" ng-click="togglew(menu, sub)"><i></i>{{sub.nm}}</label> </span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</li>

@@ -1,0 +1,197 @@
+
+/*Markers*/
+#legend {
+  position: absolute;
+  top: 3px;
+  left: 780px;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 100;
+  font-size: 1em;
+  font-family: sans-serif;
+  width: 165px;
+  background: rgba(255,255,255,0.6);
+}
+.legendheading {
+  position: relative;
+  height: 25px;
+  padding: 5px 2px 0px 2px;
+  font-size: larger;
+  font-weight: bold;
+}
+.legenditem {
+  padding: 2px;
+  margin-bottom: 2px;
+}
+
+/*Marker clusters*/
+.marker-cluster-pie g.arc{
+  fill-opacity: 0.5;
+}
+.marker-cluster-pie-label {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.marker-cluster-pie-label-1 {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+  fill:#a6d96a;
+}
+
+.marker-cluster-pie-label-2 {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+  fill:#ffffbf;
+}
+
+.marker-cluster-pie-label-3 {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+  fill:#fdae61;
+}
+
+.marker-cluster-pie-label-4 {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+  fill:#d7191c;
+}
+
+.marker-cluster-pie-label-5 {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+  /*fill:#8c2d04;*/
+}
+.marker-cluster-pie-label-6 {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+  /*fill:#6e016b;*/
+}
+.marker-cluster-pie-label-7 {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+  /*fill:#00441b;*/
+}
+
+
+/*Markers*/
+.marker {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+  border-radius:10px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-style: solid;
+  fill: #CCC;
+  stroke: #444;
+  background: #CCC;
+  border-color: #444;
+}
+.marker div{
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+/*marker categories*/
+.category-1{
+  fill: #a6d96a;
+  stroke: #a6d96a;
+  background: #a6d96a;
+  border-color: #a6d96a;
+}
+.category-2{
+  fill: #ffffbf;
+  stroke: #ffffbf;
+  background: #ffffbf;
+  border-color: #ffffbf;
+}
+.category-3{
+  fill: #fdae61;
+  stroke: #fdae61;
+  background: #fdae61;
+  border-color: #fdae61;
+}
+.category-4{
+  fill: #d7191c;
+  stroke: #d7191c;
+  background: #d7191c;
+  border-color: #d7191c;
+}
+.category-5{
+  fill: #ff7f00;
+  stroke: #ff7f00;
+  background: #ff7f00;
+  border-color: #ff7f00;
+}
+.category-6{
+  fill: #984ea3;
+  stroke: #984ea3;
+  background: #984ea3;
+  border-color: #984ea3;
+}
+.category-7{
+  fill: #00CC00;
+  stroke: #00CC00;
+  background: #00CC00;
+  border-color: #00CC00;
+}
+
+/*marker icons*/
+.icon-1{
+  /*background-image: url('http://www.iconsdb.com/icons/download/black/running-16.png');*/
+  background-repeat: no-repeat;
+  background-position: 0px 1px;
+}
+.icon-2{
+  /*background-image: url('http://www.iconsdb.com/icons/download/black/bicycle-16.png');*/
+  background-repeat: no-repeat;
+  background-position: 1px -2px;
+}
+.icon-3{
+  /*background-image: url('http://www.iconsdb.com/icons/download/black/motorcycle-16.png');*/
+  background-repeat: no-repeat;
+  background-position: 1px -2px;
+}
+.icon-4{
+  /*background-image: url('http://www.iconsdb.com/icons/download/black/car-16.png');*/
+  background-repeat: no-repeat;
+  background-position: 1px -2px;
+}
+.icon-5{
+  /*background-image: url('http://www.iconsdb.com/icons/download/black/car-16.png');*/
+  background-repeat: no-repeat;
+  background-position: 1px -2px;
+}
+.icon-6{
+  /*background-image: url('http://www.iconsdb.com/icons/download/black/car-16.png');*/
+  background-repeat: no-repeat;
+  background-position: 1px -2px;
+}
+.icon-7{
+  /*background-image: url('http://www.iconsdb.com/icons/download/black/car-16.png');*/
+  background-repeat: no-repeat;
+  background-position: 1px -2px;
+}
+/*Popup*/
+.map-popup span.heading {
+  display: block;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.map-popup span.attribute {
+  display: block;
+}
+.map-popup span.label {
+  font-weight: bold;
+}

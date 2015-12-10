@@ -1,0 +1,9 @@
+
+<li class="" ng-model="menus" ng-repeat="menu in menus track by $index">
+	<a href="{{menu.url}}"><i class="fa fa-fw {{menu.icon}}"></i>{{menu.name}}</a>
+	<ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;" ng-if="(menu.subs.length>0)">
+		<li ng-repeat="sub in menu.subs">
+			<a href="{{sub.url}}">{{sub.name}}</a>
+		</li>
+	</ul>
+</li>

@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">Add or Edit Metric</h4>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Metric Name" ng-model="editedItem.selnm" />
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" placeholder="Metric Description" rows="5" ng-model="editedItem.seldesc"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="template"> Charts </label>
+                <input id="template" placeholder="-- Select charts --" style="width:100%" class="select2" type="hidden" default-fn="editedItem.addTemplates(templates)" value="{{editedItem.templates}}" select-two-tags="editedItem.tagsOptions" aa-data="editedItem.templateTags" ae-data="editedItem.templates"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label> SQL Statement </label>
+                <textarea ui-codemirror="editedItem.editorOptions" ui-refresh='refreshCodemirror' ng-model="editedItem.fullsqlstr" name="code"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm well-primary">
+                <form class="form form-inline " role="form">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-sm" ng-click="editedItem.test()">
+                            <span class="glyphicon glyphicon-refresh"></span> Test Connection
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <span style="padding-left:50px;" ng-bind="editedItem.test_str()"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+</div>

@@ -1,0 +1,65 @@
+<div class="modal-header">
+    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
+        <!--&times;-->
+    <!--</button>-->
+    <h4 class="modal-title" id="myModalLabel">Add or Edit Dataset</h4>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Dataset Name" ng-model="editedItem.sqlnm" />
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" placeholder="Dataset Description" rows="5" ng-model="editedItem.sqldesc"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="use_yn"> Is Use? </label>
+                <select class="form-control" id="use_yn" ng-model="editedItem.useyn" ng-options="obj.value as obj.text for obj in editedItem.use_yns">
+                <option value="">-- choose value --</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="authority"> Permission </label>
+                <input id="authority" placeholder="-- Select user --" style="width:100%" class="select2" type="hidden" default-fn="editedItem.addUsers(templates)" value="{{editedItem.users}}" select-two-tags="editedItem.tagsOptions" aa-data="editedItem.allUsers" ae-data="editedItem.users"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label> SQL Statement </label>
+                <textarea ui-codemirror="editedItem.editorOptions" ui-refresh='refreshCodemirror' ng-model="editedItem.sqlstmt" name="code"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm well-primary">
+                <form class="form form-inline " role="form">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-sm" ng-click="editedItem.test()">
+                            <span class="glyphicon glyphicon-refresh"></span> Test Connection
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <span style="padding-left:50px;" ng-bind="editedItem.test_str()"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+</div>

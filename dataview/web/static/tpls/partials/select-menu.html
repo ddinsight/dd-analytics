@@ -1,0 +1,9 @@
+<li>
+    <span><i class="fa fa-lg fa-plus-circle"></i>  Metrics</span>
+    <ul>
+        <li style="display:none" ng-model="selectmenus" ng-repeat="menu in selectmenus track by $index">
+            <span> <label class="radio inline-block"><input type="radio" name="radio-inline" ng-checked="menu.checked" ng-click="toggles(menu.id)"><i></i>{{menu.nm}}</label> </span>
+        </li>
+    </ul>
+</li>
+

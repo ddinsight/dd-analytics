@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">Add & Edit Custom Report</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="title"> Title  </label>
+                <input class="form-control" id="title" ng-model="editedItem.title"  placeholder="Input Title" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="desc"> Description  </label>
+                <input class="form-control" id="desc" ng-model="editedItem.desc"  placeholder="Input Description" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="desc"> URI  </label>
+                <input class="form-control" id="uri" ng-model="editedItem.uri"  placeholder="Input URI" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="refresh_intv"> Refresh  </label>
+                <input class="form-control" id="refresh_intv" ng-model="editedItem.refresh_intv"  placeholder="Input Refresh Time" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="refresh_intv"> Default Period  </label>
+                <input class="form-control" id="period_range" ng-model="editedItem.period_range"  placeholder="Input Period Range" type="text">
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+</div>

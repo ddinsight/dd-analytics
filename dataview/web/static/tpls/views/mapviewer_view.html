@@ -1,0 +1,228 @@
+<!-- #HEADER -->
+<header id="header">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+		<div id="logo-group" class="navbar-header">
+
+			<!-- PLACE YOUR LOGO HERE -->
+			<span id="logo"> <img src="/static/assets/bootstrap/img/logo.png" id="logo-img" alt="SmartAdmin"> </span>
+			<!-- END LOGO PLACEHOLDER -->
+		</div>
+	</nav>
+
+</header>
+<!-- END HEADER -->
+
+
+<!-- #MAIN PANEL -->
+<div id="main" role="main" class="wrapper">
+	<nav>
+		<!-- #NAVIGATION -->
+		<!-- Left panel : Navigation area -->
+		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+		<aside id="left-panel">
+
+
+		<!-- NAVIGATION : This navigation is also responsive
+
+		To make this navigation dynamic please make sure to link the node
+		(the reference to the nav > ul) after page load. Or the navigation
+		will not initialize.
+		-->
+			<!--
+			NOTE: Notice the gaps after each icon usage <i></i>..
+			Please note that these links work a bit different than
+			traditional href="" links. See documentation for details.
+			-->
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav in">
+						<li class="sidebar-search">
+							<div class="input-group custom-search-form">	
+								<!-- User info -->
+								<ng-include src="'/static/tpls/partials/login-include.html'"></ng-include>
+								<!-- end user info -->
+							</span>
+							</div>
+						</li>
+						<li class="sidebar-search">
+							<div class="input-group custom-search-form">
+								<input type="text" class="form-control" placeholder="Search...">
+								<span class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+							</span>
+							</div>
+							<!-- /input-group -->
+						</li>
+				
+						<!--<li class="">-->
+							<!--<a href="ajax/dashboard.html" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>-->
+						<!--</li>-->
+						<dashboard-menu></dashboard-menu>
+					</ul>
+				</div>
+			</div>
+
+		</aside>
+		<!-- END NAVIGATION -->
+	</nav>
+	<div id="page-wrapper" style="min-height: 844px;">
+		<!-- #MAIN CONTENT -->
+		<div id="content">
+			<div class="row">
+				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+					<h1 class="page-title txt-color-blueDark" ng-bind="tableTitle1">
+						<i class="fa fa-table fa-fw"></i>
+
+						<span>>
+							Data Tables
+						</span>
+					</h1>
+				</div>
+				<!--<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">-->
+					<!--<ul id="sparks" class="">-->
+						<!--<li class="sparks-info">-->
+							<!--<h5> My Income <span class="txt-color-blue">$47,171</span></h5>-->
+							<!--<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">-->
+								<!--1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471-->
+							<!--</div>-->
+						<!--</li>-->
+						<!--<li class="sparks-info">-->
+							<!--<h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>-->
+							<!--<div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">-->
+								<!--110,150,300,130,400,240,220,310,220,300, 270, 210-->
+							<!--</div>-->
+						<!--</li>-->
+						<!--<li class="sparks-info">-->
+							<!--<h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>-->
+							<!--<div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">-->
+								<!--110,150,300,130,400,240,220,310,220,300, 270, 210-->
+							<!--</div>-->
+						<!--</li>-->
+					<!--</ul>-->
+				<!--</div>-->
+			</div>
+			<section id="widget-grid" class="">
+				<div class="row">
+					<article class="col-sm-12 col-md-12 col-lg-12">
+						<div class="jarviswidget jarviswidget-color-darken" id="widget-grid-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+							<header>
+								<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+								<h2 ng-bind="widgetTitle2"></h2>
+							</header>
+							<div>
+								<div class="jarviswidget-editbox"></div>
+								<div class="widget-body">
+									<fieldset>
+										<div class="row">
+											<section class="col col-md-3">
+												<h2>1. Select Metric </h2>
+												<div class="tree smart-form">
+													<ul> <select-menu></select-menu> </ul>
+												</div>
+											</section>
+											<section class="col col-md-3">
+												<h2>2. Select Filters </h2>
+												<div class="tree smart-form">
+													<ul> <where-menu></where-menu> </ul>
+												</div>
+											</section>
+											<section class="col col-md-3">
+												<h2>3. Select Template & Date(range) </h2>
+												<template-menu></template-menu>
+												<div  ng-show="isShowColor">
+													<label>Colors</label>
+													<input type="text" select-two="colorOption" style="width:100%"/>
+												</div>
+												<div style="padding-top: 20px;">
+													<label>Select Date</label>
+													<div class="row">
+														<date-menu></date-menu>
+													</div>
+												</div>
+												<div style="padding-top: 20px;">
+													<button ng-show="showDrawBtn" style="width:100%;" class="btn btn-primary" type="submit" ng-click="drawMap()"><i class="fa fa-bar-chart-o"></i> Mark on Map </button>
+												</div>
+												<div style="padding-top: 20px;">
+													<button ng-show="showDrawBtn" style="width:100%;" class="btn btn-danger" type="submit" ng-click="clearLayerAll()"><i class="fa fa-eraser"></i> Clear all Markers </button>
+												</div>
+												<div style="padding-top: 20px;" class="table-wrap custom-scroll animated fast fadeInRight">
+													<table class="table table-bordered">
+														<tbody>
+															<tr ng-model="availdata" ng-repeat="t in curmetrics">
+																<td>{{t.desc}}</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</section>
+											<section class="col col-md-3" style="padding-top: 20px;">
+												<form class="smart-form">
+
+												<h2>4. Select Options </h2>
+												<section>
+													<label class="toggle">
+													<input type="checkbox" name="checkbox-toggle" ng-click="isBoundaryPaging=!isBoundaryPaging" ng-checked="isBoundaryPaging">
+													<i data-swchon-text="ON" data-swchoff-text="OFF"></i>Boundary & Zoom Paging</label>
+
+												</section>
+												<section>
+													<label class="label">Additional Layer</label>
+													<!--<div class="inline-group">-->
+														<label class="checkbox">
+															<input type="checkbox" name="checkbox-inline" ng-checked="isWetherLayer">
+															<i></i>Weather</label>
+														<label class="checkbox">
+															<input type="checkbox" name="checkbox-inline" ng-checked="isTransitLayer">
+															<i></i>Transit</label>
+														<label class="checkbox">
+															<input type="checkbox" name="checkbox-inline" ng-checked="isTrafficLayer">
+															<i></i>Traffic</label>
+														<label class="checkbox">
+															<input type="checkbox" name="checkbox-inline" ng-checked="isStreetViewLayer">
+															<i></i>Street</label>
+													<!--</div>-->
+												</section>
+
+											</form></section>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+						</div>
+					</article>
+				</div>
+				<div class="row"  chart-canvas>
+					<article class="col-sm-12 col-md-12 col-lg-12">
+						<div class="jarviswidget jarviswidget-color-darken" id="widget-grid-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false">
+							<header>
+								<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+								<h2> Google Map </h2>
+							</header>
+							<div>
+								<div google-map="mapOptions" id="map_canvas1" class="google_maps" style="height:100%; "></div>
+								<div id="pano" style="position:absolute;display:overflow;" ng-show="isPanoShow"></div>
+							</div>
+						</div>
+					</article>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- #PAGE FOOTER -->
+		<ng-include src="'/static/tpls/partials/footer.html'"></ng-include>
+		<!-- END FOOTER -->
+	</div>
+    <!-- END #MAIN CONTENT -->
+</div>
+<!-- END #MAIN PANEL -->
+
+
+
+<!-- #SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+     Note: These tiles are completely responsive, you can add as many as you like -->
+<!-- <ng-include src="'/static/tpls/partials/shorcut-area.html'"></ng-include>  -->
+<!-- END SHORTCUT AREA -->
+

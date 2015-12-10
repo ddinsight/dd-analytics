@@ -1,0 +1,329 @@
+body {
+    padding-top: 70px;
+}
+#map {
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+.panel-body {
+    text-align: center;
+}
+.container-full {
+    margin: 0 auto;
+    width: 100%;
+}
+#boxed {
+    position: absolute;
+    top: 10px;
+    left: 70px;
+    border-radius: 5px;
+    border: 1px solid #909090;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    background: #fff;
+    overflow: hidden;
+    z-index: 2;
+}
+.map_wrap,
+.map_wrap * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+    font-size: 12px;
+}
+.map_wrap {
+    position: relative;
+    width: 100%;
+    height: 350px;
+}
+#legend1 {
+    padding-left: 5px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    border-radius: 5px;
+    border: 1px solid #909090;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    background: #fff;
+    overflow: hidden;
+    z-index: 2;
+}
+#legend2 {
+    position: absolute;
+    top: 470px;
+    left: 440px;
+    width: 130px;
+    border-radius: 5px;
+    border: 1px solid #909090;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    background: #fff;
+    overflow: hidden;
+    z-index: 2;
+}
+#category {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border-radius: 5px;
+    border: 1px solid #909090;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    background: #fff;
+    overflow: hidden;
+    z-index: 2;
+}
+#category li {
+    float: left;
+    list-style: none;
+    width: 50px;
+    px;
+    border-right: 1px solid #acacac;
+    padding: 6px 0;
+    text-align: center;
+    cursor: pointer;
+}
+#category li.on {
+    background: #eee;
+}
+#category li:hover {
+    background: #ffe6e6;
+    border-left: 1px solid #acacac;
+    margin-left: -1px;
+}
+#category li:last-child {
+    margin-right: 0;
+    border-right: 0;
+}
+#category li span {
+    display: block;
+    margin: 0 auto 3px;
+    width: 27px;
+    height: 28px;
+}
+#category li .category_bg {
+    background: url(http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;
+}
+#category li .bank {
+    background-position: -10px 0;
+}
+#category li .mart {
+    background-position: -10px -36px;
+}
+#category li .pharmacy {
+    background-position: -10px -72px;
+}
+#category li .oil {
+    background-position: -10px -108px;
+}
+#category li .cafe {
+    background-position: -10px -144px;
+}
+#category li .store {
+    background-position: -10px -180px;
+}
+#category li.on .category_bg {
+    background-position-x: -46px;
+}
+.placeinfo_wrap {
+    position: absolute;
+    bottom: 28px;
+    left: -150px;
+    width: 300px;
+}
+.placeinfo {
+    position: relative;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    background: #fff;
+}
+.placeinfo:nth-of-type(n) {
+    border: 0;
+    box-shadow: 0px 1px 2px #888;
+}
+.placeinfo_wrap .after {
+    content: '';
+    position: relative;
+    margin-left: -12px;
+    left: 50%;
+    width: 22px;
+    height: 12px;
+    background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+.placeinfo a,
+.placeinfo a:hover,
+.placeinfo a:active {
+    color: #fff;
+    text-decoration: none;
+}
+.placeinfo a,
+.placeinfo span {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.placeinfo span {
+    margin: 5px 5px 0 5px;
+    cursor: default;
+    font-size: 9px;
+}
+.placeinfo .title {
+    font-weight: bold;
+    font-size: 9px;
+    border-radius: 6px 6px 0 0;
+    margin: -1px -1px 0 -1px;
+    padding: 10px;
+    color: #fff;
+    background: #d95050;
+    background: #d95050 url(http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;
+}
+.placeinfo .tel {
+    color: #0f7833;
+}
+.placeinfo .jibun {
+    color: #999;
+    font-size: 11px;
+    margin-top: 0;
+}
+.hexagon {
+    position: relative;
+    width: 30px;
+    height: 17px;
+    background-color: blue;
+    margin: 8px 0;
+    opacity: 0.6;
+}
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+}
+.hexagon:before {
+    bottom: 100%;
+    border-bottom: 8px solid blue;
+}
+.hexagon:after {
+    top: 100%;
+    width: 0;
+    border-top: 8px solid blue;
+}
+.hexagonb {
+    position: relative;
+    width: 30px;
+    height: 17px;
+    background-color: #FF0000;
+    margin: 8px 0;
+    opacity: 0.6;
+}
+.hexagonb:before,
+.hexagonb:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+}
+.hexagonb:before {
+    bottom: 100%;
+    border-bottom: 8px solid #FF0000;
+}
+.hexagonb:after {
+    top: 100%;
+    width: 0;
+    border-top: 8px solid #FF0000;
+}
+.logo{
+    position: absolute;
+    top:15px;
+    left:80px;
+    color:#ffffff;
+}
+.step {
+    display: inline-block;
+    line-height: 1;
+    width: 10%;
+}
+.size-12 { font-size: 12px; }
+.size-14 { font-size: 14px; }
+.size-16 { font-size: 16px; }
+.size-18 { font-size: 18px; }
+.size-21 { font-size: 21px; }
+.size-24 { font-size: 24px; }
+.size-36 { font-size: 36px; }
+.size-48 { font-size: 48px; }
+.size-52 { font-size: 52px; }
+.size-60 { font-size: 60px; }
+.size-72 { font-size: 72px; }
+
+/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+
+/* ============= Container for Demo ============= */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic);
+
+#header {width:100%; background:#34495E; border-bottom:3px solid #0B292D;}
+.topNav {background:#253749; width:100%; border-bottom:1px solid #0B292D;}
+.topNav a {display:block; padding:5px 10px; color:#FFF;}
+.topNav a:hover {background:#2B445E; transition:background 0.5s ease}
+
+.headingContainer {width:1024px; margin:50px auto; }
+.heading {color:#FFF; text-align:center;}
+.heading h1 {margin-bottom:10px;}
+.heading a {color:#00BFFF;}
+.heading P {font-size:14px; margin-bottom:20px;}
+
+.download {display:block;}
+
+.btnContainer {margin:40px auto 0; width:450px;}
+.btnContainer .download-btn  {display:block; float:left; padding:10px 30px; border:2px solid #0B292D; font-weight:bold; color:#00BFFF; width:150px; text-align:center; background:#1C3044; margin-right:10px;}
+
+.download-btn {margin:0 auto; display:block; padding:10px 30px; border:2px solid #0B292D; font-weight:bold; color:#00BFFF; width:150px; text-align:center; background:#1C3044;}
+.download-btn:hover {background:#00BFFF; color:#FFF; transition:background 0.5s ease-in-out;}
+
+.clearfix:before, .clearfix:after {content: " "; display: table;}  
+.clearfix:after {clear:both;}  
+.clearfix {*zoom:1;}  
+
+.pull-left {float:left;}
+.pull-right {float:right;}
+
+.container {margin-top: 40px;}
+
+/* ============= Layout for Demo ============= */
+.container {width:600px; margin-left:auto; margin-right: auto;}
+
+.container header {margin-bottom: 10px; padding: 10px 20px; border-bottom: 1px solid #DDD; background: #f4f4f4;}
+
+.half-col {border:1px solid #DDD; float:left; width:45%; margin-right: 5%; box-shadow: 0 3px 0 #EEE;}
+.half-col.last {width:45%; margin-right: 0;}
+
+.half-col ul {list-style: none; padding-left:20px;}
+.half-col li {overflow: hidden; display: block; margin-bottom: 10px;}
+
+input[type=checkbox],input[type=radio]{opacity:0;position:absolute;z-index:12;width:18px;height:18px;}
+input[type=checkbox]:checked,input[type=radio]:checked,input[type=checkbox]:focus,input[type=radio]:focus{outline:none !important;}
+input[type=checkbox]+.lbl,input[type=radio]+.lbl{position:relative;z-index:11;display:inline-block;margin:0;line-height:20px;min-height:14px;min-width:14px;font-weight:normal;}
+input[type=checkbox]+.lbl.padding-16::before,input[type=radio]+.lbl.padding-16::before{margin-right:16px;}
+input[type=checkbox]+.lbl.padding-12::before,input[type=radio]+.lbl.padding-12::before{margin-right:12px;}
+input[type=checkbox]+.lbl.padding-8::before,input[type=radio]+.lbl.padding-8::before{margin-right:8px;}
+input[type=checkbox]+.lbl.padding-4::before,input[type=radio]+.lbl.padding-4::before{margin-right:4px;}
+input[type=checkbox]+.lbl.padding-0::before,input[type=radio]+.lbl.padding-0::before{margin-right:0px;}
+input[type=checkbox]+.lbl::before,input[type=radio]+.lbl::before{font-family:fontAwesome;font-weight:normal;font-size:11px;color:#2091cf;content:"\a0";background-color:#FAFAFA;border:1px solid #CCC;box-shadow:0 1px 2px rgba(0, 0, 0, 0.05);border-radius:0;display:inline-block;text-align:center;vertical-align:middle;height:13px;line-height:13px;min-width:13px;margin-right:1px; margin-top: -5px;}
+input[type=checkbox]:checked+.lbl::before,input[type=radio]:checked+.lbl::before{display:inline-block;content:'\f00c';background-color:#F5F8FC;border-color:#adb8c0;box-shadow:0 1px 2px rgba(0, 0, 0, 0.05),inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),inset 15px 10px -12px rgba(255, 255, 255, 0.1);}
+input[type=checkbox]:hover+.lbl::before,input[type=radio]:hover+.lbl::before,input[type=checkbox]+.lbl:hover::before,input[type=radio]+.lbl:hover::before{border-color:#1c7aad;}
+input[type=checkbox]:active+.lbl::before,input[type=radio]:active+.lbl::before,input[type=checkbox]:checked:active+.lbl::before,input[type=radio]:checked:active+.lbl::before{box-shadow:0 1px 2px rgba(0, 0, 0, 0.05),inset 0px 1px 3px rgba(0, 0, 0, 0.1);}
+input[type=checkbox]:disabled+.lbl::before,input[type=radio]:disabled+.lbl::before,input[type=checkbox][disabled]+.lbl::before,input[type=radio][disabled]+.lbl::before,input[type=checkbox].disabled+.lbl::before,input[type=radio].disabled+.lbl::before{background-color:#DDD !important;border-color:#CCC !important;box-shadow:none !important;color:#BBB;}
+input[type=radio]+.lbl::before{border-radius:32px;font-family:Arial,Helvetica,sans-serif;font-size:36px;}
+input[type=radio]:checked+.lbl::before{content:"\2022";}

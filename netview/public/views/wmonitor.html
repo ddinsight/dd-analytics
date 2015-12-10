@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=9aa852ff95ea4100f8a36d073d22ed26&libraries=services"></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.6/mapbox.css' rel='stylesheet' />
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.6/mapbox.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"> -->
+  <!-- <link rel="stylesheet" href="assets/css/clusterpies.css" /> -->
+  <link rel="stylesheet" href="css/daum.css" />
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/modules/exporting.js"></script>
+  
+  <script src="assets/lib_wave_.min.js"></script>
+  <link rel="stylesheet" href="assets/lib_wave_.css"/>
+
+  
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">DD Insight</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Wifi Monitoring</a>
+
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Area  <span class="caret"></span>   <span id="curArea" style="color:#ffffff;font-weight:bold"></span> </a>
+              <ul class="dropdown-menu" role="menu" id="areas"></ul>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Settings <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="#" onclick="document.location.href='/oreal'">Cell Quality and Traffic Analysis</a></li>
+                  <li><a href="#" onclick="document.location.href='/caction'">Cell Deployment Comparison</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#" onclick="document.location.href='/omonitor'">Cell Quality Comparison</a></li>
+                  <li><a href="#" onclick="document.location.href='/oaction'">Action-Required Cell Review</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#" onclick="document.location.href='/hmonitor'">Monitor for Cell and WiFi</a></li>
+                  <li><a href="#" onclick="document.location.href='/haction'">Action-Required Spot Review</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#" onclick="document.location.href='/wmonitor'">Wi-Fi Monitor   </a></li>
+                  <li class="divider"></li>
+                  <li><a href="#" onclick="document.location.href='/logout'">Logout           </a></li>
+
+              </ul>
+            </li>
+
+          </ul>
+          <form class="navbar-form navbar-right" id="loading" style="display:none;">
+            <img src="assets/images/ajax-loader.gif"/>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-full">
+      <div class="row">
+        <div class="col-md-12">
+        <blockquote>
+            <p>Wi-Fi Monitor</p>
+            <small>Note:  The results in this screen are just to demonstrate the DD Insight features with small subset of data from a certain app in a certain period from the past. The numbers don’t reflect actual network status.</small>
+          </blockquote>
+        </div>
+      </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <h3>Add</h3>
+                    <h1 class="text-success" style="color:red;font-weight: bold;" id="addapcount">0</h1>
+                    <h4>Count</h4>
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <h3>Repair</h3>
+                    <h1 class="text-success" style="color:#FF9900;font-weight: bold;" id="repairapcount">0</h1>
+                    <h4>Count</h4>
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <h3>Delete</h3>
+                    <h1 class="text-success" style="color:#3366FF;font-weight: bold;" id="removeapcount">0</h1>
+                    <h4>Count</h4>
+                  </div>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <div class="row" style="height:500px;">
+            <div class="col-lg-12">
+                <div class="map_wrap">
+                    <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
+                    <ul id="category">
+                        <li id="BK9" data-order="0"> 
+                            <span class="category_bg bank"></span>
+                            은행
+                        </li>       
+                        <li id="MT1" data-order="1"> 
+                            <span class="category_bg mart"></span>
+                            마트
+                        </li>  
+                        <li id="PM9" data-order="2"> 
+                            <span class="category_bg pharmacy"></span>
+                            약국
+                        </li>  
+                        <li id="OL7" data-order="3"> 
+                            <span class="category_bg oil"></span>
+                            주유소
+                        </li>  
+                        <li id="CE7" data-order="4"> 
+                            <span class="category_bg cafe"></span>
+                            카페
+                        </li>  
+                        <li id="CS2" data-order="5"> 
+                            <span class="category_bg store"></span>
+                            편의점
+                        </li>      
+                    </ul>
+                </div>            
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:20px;">
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Top 10 for Add
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped table-hover " id="addaplist">
+                            <thead>
+                                
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Top 10 for Repair
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped table-hover " id="repairaplist">
+                            <thead>
+                               
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Top 10 for Delete
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped table-hover " id="removeaplist">
+                            <thead>
+                                
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row"><div class="col-lg-12"><blockquote>
+          <h3> Action Result </h3>          
+        </blockquote></div></div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="container4" style="min-width: 310px; height: 400px; margin: 0 auto"></div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="container5" style="min-width: 310px; height: 400px; margin: 0 auto"></div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="container6" style="min-width: 310px; height: 400px; margin: 0 auto"></div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</body>
+<script src='js/wmonitor.js'></script>
+</html>

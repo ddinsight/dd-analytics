@@ -1,0 +1,15 @@
+Flask
+Flask-SQLAlchemy
+Flask-WTF
+Flask-Login
+Flask-Security
+twill
+simplejson
+Flask-Testing
+MySQL-python
+Flask-MySQL
+Flask-HTTPAuth
+Flask-PyMongo
+sqlparse
+xlwt
+CherryPy

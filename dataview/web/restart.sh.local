@@ -1,0 +1,5 @@
+kill -9 `lsof -wni tcp:5002 | awk '{print $2}' | grep -v PID`
+rm nohup.out
+nohup python run.py &
+tail -f nohup.out
+

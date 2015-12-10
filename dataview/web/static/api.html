@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title>API sampler</title>
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Aircloud Data API</h1>
+
+            <h2>Usage</h2>
+            <code>http://domain:port/api/v1.0/api/data?sqlid=<:sqlid>&selid=<:selid>&whvalid=[{"whid":<:whid>,"colvals":[<:colid>,<:colid>]}]&sdt=20140924&edt=20141224&key=access_key</code>
+            <br/><code>ex) http://domain:port/api/v1.0/api/data?sqlid=60&selid=172&whvalid=[{"whid":76,"colvals":[332,333]}]&sdt=20140924&edt=20141224&key=access_key</code>
+            <h3>Parameter code</h3>
+            <ul>
+                <li>&lt:sqlid&gt: data id</li>
+                <li>&lt:selid&gt: metrics id</li>
+                <li>&lt:whid&gt: filter id, whid and colid reference below table</li>
+                <li>&lt:colid&gt: filter value id </li>
+                <li>&lt:sdt&gt: start date</li>
+                <li>&lt:edt&gt: end date</li>
+                <li><:access_key: issued license key</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Parameter reference</h2>
+        </div>
+    </div>
+    <div class="row">
+{% for api in apis %}
+
+        <div class="col-md-12">
+            <h4><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>  {{ api['sqlnm'] }}</h4>
+            <h4>sqlid : {{ api['sqlid'] }}</h4>
+            <strong> * metrics</strong>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>selid</th>
+                        <th>available metric</th>
+                        <th>description</th>
+                    </tr>
+                </thead>
+                <tbody>
+{% for metric in api['metrics'] %}
+                    <tr>
+                        <td>{{metric['selid'] }}</td>
+                        <td>{{metric['selnm'] }}</td>
+                        <td>{{metric['seldesc'] }}</td>
+                    </tr>
+{% endfor %}
+                </tbody>
+            </table>
+            <strong> * filters</strong>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>whid</th>
+                        <th>filter</th>
+                        <th>values(valid:value name)</th>
+                    </tr>
+                </thead>
+                <tbody>
+{% for filter in api['filters'] %}
+                    <tr>
+                        <td>{{ filter['whid'] }}</td>
+                        <td>{{ filter['colnm'] }}</td>
+                        <td>
+{% for value in filter['values'] %}
+    {{ value['valid'] }}:{{ value['valnm'] }},
+{% endfor %}
+                        </td>
+                    </tr>
+{% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endfor %}
+    </div>
+</div>
+</body>
+</html>

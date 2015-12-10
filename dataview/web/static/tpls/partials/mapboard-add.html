@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">Add & Edit Mapboard</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="title"> Title  </label>
+                <input class="form-control" id="title" ng-model="editedItem.mapboard.title"  placeholder="Input Title" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="desc"> Description  </label>
+                <input class="form-control" id="desc" ng-model="editedItem.mapboard.desc"  placeholder="Input Description" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="refresh_intv"> Title  </label>
+                <input class="form-control" id="refresh_intv" ng-model="editedItem.mapboard.refresh_intv"  placeholder="Input Refresh Time" type="text">
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+</div>

@@ -1,0 +1,399 @@
+<style>
+.tooltip-inner {
+max-width: 350px;
+/* If max-width does not work, try using width instead */
+width: 350px;
+text-align: left;
+}
+
+
+</style>
+<!-- #HEADER -->
+<header id="header">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+		<div id="logo-group" class="navbar-header">
+
+			<!-- PLACE YOUR LOGO HERE -->
+			<span id="logo"> <img src="/static/assets/bootstrap/img/logo.png" id="logo-img" alt="SmartAdmin"> </span>
+			<!-- END LOGO PLACEHOLDER -->
+		</div>
+	</nav>
+
+</header>
+<!-- END HEADER -->
+
+<!-- #MAIN PANEL -->
+<div id="main" role="main" class="wrapper">
+	<nav>
+		<!-- #NAVIGATION -->
+		<!-- Left panel : Navigation area -->
+		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+		<aside id="left-panel">
+
+
+		<!-- NAVIGATION : This navigation is also responsive
+
+		To make this navigation dynamic please make sure to link the node
+		(the reference to the nav > ul) after page load. Or the navigation
+		will not initialize.
+		-->
+			<!--
+			NOTE: Notice the gaps after each icon usage <i></i>..
+			Please note that these links work a bit different than
+			traditional href="" links. See documentation for details.
+			-->
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav in">
+						<li class="sidebar-search">
+							<div class="input-group custom-search-form">	
+								<!-- User info -->
+								<ng-include src="'/static/tpls/partials/login-include.html'"></ng-include>
+								<!-- end user info -->
+							</span>
+							</div>
+						</li>
+						<li class="sidebar-search">
+							<div class="input-group custom-search-form">
+								<input type="text" class="form-control" placeholder="Search...">
+								<span class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+							</span>
+							</div>
+							<!-- /input-group -->
+						</li>
+						<dashboard-menu></dashboard-menu>
+					</ul>
+				</div>
+			</div>
+
+		</aside>
+		<!-- END NAVIGATION -->
+	</nav>
+	<div id="page-wrapper" style="min-height: 844px;">
+		<!-- #MAIN CONTENT -->
+		<div id="content">
+			<div class="row">
+				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+					<h1 class="page-title txt-color-blueDark" ng-bind="tableTitle1">
+						<i class="fa fa-table fa-fw "></i>
+
+						<span>>
+							Data Tables
+						</span>
+					</h1>
+				</div>
+				<!--<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">-->
+					<!--<ul id="sparks" class="">-->
+						<!--<li class="sparks-info">-->
+							<!--<h5> My Income <span class="txt-color-blue">$47,171</span></h5>-->
+							<!--<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">-->
+								<!--1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471-->
+							<!--</div>-->
+						<!--</li>-->
+						<!--<li class="sparks-info">-->
+							<!--<h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>-->
+							<!--<div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">-->
+								<!--110,150,300,130,400,240,220,310,220,300, 270, 210-->
+							<!--</div>-->
+						<!--</li>-->
+						<!--<li class="sparks-info">-->
+							<!--<h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>-->
+							<!--<div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">-->
+								<!--110,150,300,130,400,240,220,310,220,300, 270, 210-->
+							<!--</div>-->
+						<!--</li>-->
+					<!--</ul>-->
+				<!--</div>-->
+			</div>
+
+			<section id="widget-grid" class="">
+				<div class="row">
+					<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="jarviswidget jarviswidget-color-darken" id="wid-chart-gene-list" data-widget-editbutton="false">
+							<header>
+								<h2>Dataset of chart</h2>
+							</header>
+							<!-- widget div-->
+									<div>
+
+										<!-- widget edit box -->
+										<div class="jarviswidget-editbox">
+											<!-- This area used as dropdown edit box -->
+
+										</div>
+										<!-- end widget edit box -->
+
+										<!-- widget content -->
+										<div class="widget-body fuelux">
+
+											<div class="wizard bs-example bs-emample-tabs" data-example-id="togglable-tabs">
+												<ul class="nav nav-tabs" role="tablist">
+													<li class="active">
+														<a data-target="#step1" id="step1-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false" >
+															<span class="badge badge-info">1</span>Step 1 - Add DataSet <span class="chevron"></span>
+														</a>
+													</li>
+													<li>
+														<a data-target="#step2" id="step2-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false" >
+															<span class="badge">2</span>Step 2 - Add Metric <span class="chevron"></span>
+														</a>
+													</li>
+													<li>
+														<a data-target="#step3" id="step3-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false" >
+															<span class="badge">3</span>Step 3 - Add Filter <span class="chevron"></span>
+														</a>
+													</li>
+												</ul>
+												<div class="actions">
+													<button type="button" class="btn btn-sm btn-primary btn-prev">
+														<i class="fa fa-arrow-left"></i>Prev
+													</button>
+													<button type="button" class="btn btn-sm btn-success btn-next" data-last="Finish">
+														Next<i class="fa fa-arrow-right"></i>
+													</button>
+												</div>
+											</div>
+											<div class="step-content">
+												<form class="form-horizontal" id="fuelux-wizard" method="post">
+
+													<div role="tabpanel" class="tab-pane active"  id="step1" ng-controller="DatasetOfChartMakerController">
+														<h3><strong>Step 1 </strong> - Dataset Management</h3>
+														<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}  <a href="javascript:void(0);" style="padding-left: 10px;" ng-click="alert.button.method()" ng-show="alert.button.show" class="btn btn-sm btn-default"><strong>{{alert.button.text}}</strong></a></alert>
+														<!-- wizard form starts here -->
+														<table class="table table-striped table-bordered table-hover" width="100%"
+														   ng-data-table="overrideOptions"
+														   ao-columns="tblColumns"
+														   aa-data="datasets"
+														   ao-column-defs="columnDefs"
+														   aa-sorting="tblSorting"></table>
+
+													</div>
+
+													<div role="tabpanel" class="step-pane" id="step2" ng-controller="MetricOfChartMakerController">
+														<h3><strong>Step 2 </strong> - Select Metrics</h3>
+
+														<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}  <a href="javascript:void(0);" style="padding-left: 10px;" ng-click="alert.button.method()" ng-show="alert.button.show" class="btn btn-sm btn-default"><strong>{{alert.button.text}}</strong></a></alert>
+														<!-- wizard form starts here -->
+														<table class="table table-striped table-bordered table-hover" width="100%"
+														   ng-data-table="overrideOptions"
+														   ao-columns="tblColumns"
+														   aa-data="metrics"
+														   ao-column-defs="columnDefs"
+														   aa-sorting="tblSorting"></table>
+
+													</div>
+
+													<div role="tabpanel" class="step-pane" id="step3" ng-controller="FilterOfChartMakerController">
+														<h3><strong>Step 3 </strong> - Add Filter</h3>
+														<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}  <a href="javascript:void(0);" style="padding-left: 10px;" ng-click="alert.button.method()" ng-show="alert.button.show" class="btn btn-sm btn-default"><strong>{{alert.button.text}}</strong></a></alert>
+														<div id="filterlist" ng-show="current_state==0">
+															<!-- wizard form starts here -->
+															<table class="table table-striped table-bordered table-hover" width="100%"
+															   ng-data-table="filterlist.overrideOptions"
+															   ao-columns="filterlist.tblColumns"
+															   aa-data="filterlist.data"
+															   ao-column-defs="filterlist.columnDefs"
+															   aa-sorting="filterlist.tblSorting"></table>
+														</div>
+
+														<div id="filterdetail" ng-show="current_state==1">
+															<div class="form-group">
+																<label class="col-md-2  control-label"><b>Filter name</b></label>
+																<div class="col-md-10">
+																<input class="form-control input" placeholder="filter name" ng-model="editedItem.colnm" type="text">
+																</div>
+															</div>
+															<!--<ul id="myTab1" class="nav nav-tabs bordered">-->
+																<!--<li class="active">-->
+																	<!--<a href="#s1" data-toggle="tab">Predefined</a>-->
+																<!--</li>-->
+																<!--<li>-->
+																	<!--<a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Customizable</a>-->
+																<!--</li>-->
+															<!--</ul>-->
+
+
+															<tabset id="myTabContent1" class="tab-content padding-10">
+
+																<tab heading="Predefined" active="tab1.active" disabled="tab1.dsiabled">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label"><b>Filter type</b></label>
+																		<div class="col-md-10">
+																			<label class="radio radio-inline">
+																				<input type="radio" class="radiobox" name="style-0a" value="=" ng-model="editedItem.operand">
+																				<span>Match</span> </label>
+																			<label class="radio radio-inline">
+																				<input type="radio" class="radiobox" name="style-0a" value="in" ng-model="editedItem.operand">
+																				<span>Contain</span> </label>
+																			<label class="radio radio-inline">
+																				<input type="radio" class="radiobox" name="style-0a" value="not in" ng-model="editedItem.operand">
+																				<span>Exclude</span> </label>
+																			<label class="radio radio-inline">
+																				<input type="radio" class="radiobox" name="style-0a" value=">=" ng-model="editedItem.operand">
+																				<span>Greater than</span> </label>
+																			<label class="radio radio-inline">
+																				<input type="radio" class="radiobox" name="style-0a" value="<=" ng-model="editedItem.operand">
+																				<span>Less than</span> </label>
+																		</div>
+																	</div>
+
+
+																	<div class="form-group">
+																		<label class="col-md-2 control-label"><b>Filters</b></label>
+																		<div class="col-md-10">
+																			<select class="select2" id="availablecolumns" ng-model="editedItem.colstr" ng-options="obj.value for obj in availablecolumns">
+																				<option value="">-- choose filter --</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group">
+																		<table class="table table-striped table-bordered table-hover" width="100%"
+																		ng-data-table="valuelist.overrideOptions"
+																		ao-columns="valuelist.tblColumns"
+																		aa-data="valuelist.data"
+																		ao-column-defs="valuelist.columnDefs"
+																		aa-sorting="valuelist.tblSorting"></table>
+																	</div>
+																	<div class="form-actions">
+																		<div class="row">
+																			<div class="col-md-12">
+																				<button class="btn btn-default" type="submit" ng-click="cancel()">
+																					<i class="fa fa-arrow-left"></i>
+																					List
+																				</button>
+																				<button class="btn btn-primary" type="submit" ng-click="save(0)">
+																					<i class="fa fa-save"></i>
+																					Save
+																				</button>
+																			</div>
+																		</div>
+																	</div>
+
+																</tab>
+																<tab heading="Customizable" active="tab2.active" disabled="tab2.dsiabled">
+																	<div class="form-group">
+																		<label class="col-md-2 control-label"><b>Filter type</b></label>
+																		<div class="col-md-10">
+																			<label class="radio radio-inline">
+																				<input type="radio" class="radiobox" name="style-0a" value="REGEXP" ng-model="editedItem.operand">
+																				<span>Contain(REGEXP)</span> </label>
+																			<label class="radio radio-inline">
+																				<input type="radio" class="radiobox" name="style-0a" value="NOT REGEXP" ng-model="editedItem.operand">
+																				<span>Exclude(REGEXP)</span> </label>
+																		</div>
+																	</div>
+
+
+																	<div class="form-group">
+																		<label class="col-md-2 control-label"><b>Filters</b></label>
+																		<div class="col-md-10">
+																			<select class="select2" id="availablecolumns" ng-model="editedItem.colstr" ng-options="obj.value as obj.text for obj in availablecolumns">
+																				<option value="">-- choose filter --</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group">
+
+																		<label class="control-label col-md-2" for="prepend"><b>Regular Expression</b></label>
+																		<div class="col-md-10">
+																			<div class="icon-addon">
+																				<input type="text" placeholder="Regex of MySQL" ng-model="editedItem.regex" class="form-control">
+																				<label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="regex"></label>
+																			</div>
+																		</div>
+
+																	</div>
+
+																	<div class="form-actions">
+																		<div class="row">
+																			<div class="col-md-12">
+																				<button class="btn btn-default" type="submit" ng-click="cancel()">
+																					<i class="fa fa-arrow-left"></i>
+																					List
+																				</button>
+																				<button class="btn btn-primary" type="submit"  ng-click="save(1)">
+																					<i class="fa fa-save""></i>
+																					Save
+																				</button>
+																			</div>
+																		</div>
+																	</div>
+
+																</tab>
+															</tabset><!-- tabset -->
+														</div>
+													</div>
+
+
+												</form>
+											</div>
+
+										</div>
+										<!-- end widget content -->
+
+									</div>
+									<!-- end widget div -->
+
+						</div>
+					</article>
+				</div>
+			</section>
+		</div>
+		<!-- #PAGE FOOTER -->
+		<ng-include src="'/static/tpls/partials/footer.html'"></ng-include>
+		<!-- END FOOTER -->
+	</div>
+
+<!-- END #MAIN CONTENT -->
+
+</div>
+<!-- END #MAIN PANEL -->
+
+
+<!-- #SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+ Note: These tiles are completely responsive, you can add as many as you like -->
+<!-- <ng-include src="'/static/tpls/partials/shorcut-area.html'"></ng-include>  -->
+<!-- END SHORTCUT AREA -->
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // fuelux wizard
+    var wizard = $('.wizard').wizard();
+    wizard.on('finished', function (e, data) {
+        console.log("submitted!")
+    });
+	$("#step2").hide();
+	$("#step3").hide();
+
+
+});
+$('#step1-tab').click(function (e) {
+	e.preventDefault();
+	$(this).tab('show');
+
+	$("#step1").show();
+	$("#step2").hide();
+	$("#step3").hide();
+});
+$('#step2-tab').click(function (e) {
+	e.preventDefault();
+	$(this).tab('show');
+
+	$("#step1").hide();
+	$("#step2").show();
+	$("#step3").hide();
+});
+$('#step3-tab').click(function (e) {
+	e.preventDefault();
+	$(this).tab('show');
+
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").show();
+});
+
+</script>

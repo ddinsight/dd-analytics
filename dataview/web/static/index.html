@@ -1,0 +1,267 @@
+
+    <!DOCTYPE html>
+    <html lang="en-us" ng-app="Wave">
+    <head>
+        <meta charset="utf-8">
+        <title> Aircloud Analysis</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <!-- #CSS Links -->
+        <!-- Basic Styles -->
+        <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static', filename='assets/bootstrap/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static', filename='assets/bootstrap/css/font-awesome.min.css')}}">
+
+        <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static', filename='assets/bootstrap/css/sb-admin-2.css')}}">
+        <!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+        <!--<link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static', filename='assets/bootstrap/css/smartadmin-production.css')}}">
+        <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static', filename='assets/bootstrap/css/smartadmin-skins.min.css')}}">-->
+
+        <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static', filename='assets/bootstrap/css/angular-ui-tree.min.css')}}">
+        <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static', filename='assets/bootstrap/css/codemirror.css')}}">
+
+        <!-- SmartAdmin RTL Support is under construction
+             This RTL CSS will be released in version 1.5
+        <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> -->
+
+        <!-- We recommend you use "your_style.css" to override SmartAdmin
+             specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+        <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+
+        <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+        <!--<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">-->
+
+        <!-- #FAVICONS -->
+        <link rel="shortcut icon" href="{{url_for('static', filename='assets/bootstrap/img/favicon/favicon.ico')}}" type="image/x-icon">
+        <link rel="icon" href="{{url_for('static', filename='assets/bootstrap/img/favicon/favicon.ico')}}" type="image/x-icon">
+
+        <!-- #GOOGLE FONT -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+        <!-- #APP SCREEN / ICONS -->
+        <!-- Specifying a Webpage Icon for Web Clip
+             Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+        <link rel="apple-touch-icon" href="{{url_for('static', filename='assets/bootstrap/img/splash/sptouch-icon-iphone.png')}}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{url_for('static', filename='assets/bootstrap/img/splash/touch-icon-ipad.png')}}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{url_for('static', filename='assets/bootstrap/img/splash/touch-icon-iphone-retina.png')}}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{url_for('static', filename='assets/bootstrap/img/splash/touch-icon-ipad-retina.png')}}">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+  
+        <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <!-- Startup image for web apps -->
+        <link rel="apple-touch-startup-image" href="{{url_for('static', filename='assets/bootstrap/img/splash/ipad-landscape.png')}}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        <link rel="apple-touch-startup-image" href="{{url_for('static', filename='assets/bootstrap/img/splash/ipad-portrait.png')}}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="{{url_for('static', filename='assets/bootstrap/img/splash/iphone.png')}}" media="screen and (max-device-width: 320px)">
+        <!-- #PLUGINS -->
+        <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script>
+            if (!window.jQuery) {
+                document.write("<script src=\"{{url_for('static', filename='assets/bootstrap/js/libs/jquery-2.0.2.min.js')}}\"><\/script>");
+            }
+        </script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script>
+            if (!window.jQuery.ui) {
+                document.write("<script src=\"{{url_for('static', filename='assets/bootstrap/js/libs/jquery-ui-1.10.3.min.js')}}\"><\/script>");
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=en&libraries=panoramio,weather,geometry,visualization"></script>
+        <script src="{{url_for('static', filename='assets/vendor/infobox.js')}}"></script>
+        <!-- IMPORTANT: APP CONFIG -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/app.config.js')}}"></script>
+
+        <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js')}}"></script>
+
+        <!-- BOOTSTRAP JS -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/bootstrap/bootstrap.min.js')}}"></script>
+
+        <!-- CUSTOM NOTIFICATION -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/notification/SmartNotification.js')}}"></script>
+
+        <!-- JARVIS WIDGETS -->
+        <!--<script src="{{url_for('static', filename='assets/bootstrap/js/smartwidgets/jarvis.widget.js')}}"></script>-->
+
+        <!-- EASY PIE CHARTS -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js')}}"></script>
+
+        <!-- SPARKLINES -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/sparkline/jquery.sparkline.min.js')}}"></script>
+
+        <!-- JQUERY VALIDATE -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/jquery-validate/jquery.validate.min.js')}}"></script>
+
+        <!-- JQUERY MASKED INPUT -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/masked-input/jquery.maskedinput.min.js')}}"></script>
+
+        <!-- JQUERY SELECT2 INPUT -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/select2/select2.min.js')}}"></script>
+
+        <!-- JQUERY UI + Bootstrap Slider -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/bootstrap-slider/bootstrap-slider.min.js')}}"></script>
+
+        <!-- browser msie issue fix -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/msie-fix/jquery.mb.browser.min.js')}}"></script>
+
+        <!-- FastClick: For mobile devices: you can disable this in app.js -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/fastclick/fastclick.min.js')}}"></script>
+
+        <!--[if IE 8]>
+            <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+        <![endif]-->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/datatables/dataTables.colVis.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/datatables/dataTables.tableTools.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/datatables/dataTables.bootstrap.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/datatable-responsive/datatables.responsive.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/fuelux/wizard/wizard.min.js')}}"></script>
+
+        <!-- PAGE RELATED PLUGIN(S) -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/maxlength/bootstrap-maxlength.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/clockpicker/clockpicker.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/noUiSlider/jquery.nouislider.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/ion-slider/ion.rangeSlider.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/colorpicker/bootstrap-colorpicker.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/knob/jquery.knob.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/x-editable/moment.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/x-editable/jquery.mockjax.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/x-editable/x-editable.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/typeahead/typeahead.min.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/typeahead/typeaheadjs.min.js')}}"></script>
+
+        <!-- MAIN APP JS FILE -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/app.js')}}"></script>
+
+        <!-- PAGE RELATED PLUGIN(S) -->
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/jquery-nestable/jquery.nestable.min.js')}}"></script>
+
+        <script src="{{url_for('static', filename='assets/bootstrap/js/plugin/jqgrid/jquery.jqGrid.min.js')}}"></script>
+		<script src="{{url_for('static', filename='assets/bootstrap/js/plugin/jqgrid/grid.locale-en.min.js')}}"></script>
+
+        <!-- DO NOT REMOVE: Wave Main App file  -->
+        <script src="{{url_for('static', filename='assets/vendor/rainbowvis.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/underscore.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/angular.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/angular-route.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/angular-resource.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/angular-cookies.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/angular-loader.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/angular-sanitize.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/angular-animate.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/ui-bootstrap-tpls-0.11.2.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/codemirror.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/codemirror-mysql.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/ui-codemirror.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/angular-ui-tree.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/ng-csv.js')}}"></script>
+        <script src="{{url_for('static', filename='assets/vendor/sql-hint.js')}}"></script>
+        <script src="{{url_for('static', filename='js/lib/router.js')}}"></script>
+        <script src="{{url_for('static', filename='js/config/config.js')}}"></script>
+        <script src="{{url_for('static', filename='js/services/common.service.js')}}"></script>
+        <script src="{{url_for('static', filename='js/services/chartmaker.service.js')}}"></script>
+        <script src="{{url_for('static', filename='js/services/report.service.js')}}"></script>
+        <script src="{{url_for('static', filename='js/services/mapviewer.service.js')}}"></script>
+        <script src="{{url_for('static', filename='js/services/tools.service.js')}}"></script>
+        <script src="{{url_for('static', filename='js/services/chartviewer.service.js')}}"></script>
+        <script src="{{url_for('static', filename='js/services/dataviewer.service.js')}}"></script>
+        <script src="{{url_for('static', filename='js/directives/chartmaker.directive.js')}}"></script>
+        <script src="{{url_for('static', filename='js/directives/common.directive.js')}}"></script>
+        <script src="{{url_for('static', filename='js/directives/d3.directive.js')}}"></script>
+        <script src="{{url_for('static', filename='js/directives/viewtmpl.directive.js')}}"></script>
+        <script src="{{url_for('static', filename='js/directives/report.directive.js')}}"></script>
+        <script src="{{url_for('static', filename='js/directives/formatters.js')}}"></script>
+        <script src="{{url_for('static', filename='js/directives/mapviewer.directive.js')}}"></script>
+        <script src="{{url_for('static', filename='js/directives/chartviewer.directive.js')}}"></script>
+        <script src="{{url_for('static', filename='js/directives/dataviewer.directive.js')}}"></script>
+        <script src="{{url_for('static', filename='js/controllers/chartmaker.ctrl.js')}}"></script>
+        <script src="{{url_for('static', filename='js/controllers/app.ctrl.js')}}"></script>
+        <script src="{{url_for('static', filename='js/controllers/report.ctrl.js')}}"></script>
+        <script src="{{url_for('static', filename='js/controllers/mapviewer.ctrl.js')}}"></script>
+        <script src="{{url_for('static', filename='js/controllers/tools.ctrl.js')}}"></script>
+        <script src="{{url_for('static', filename='js/controllers/chartviewer.ctrl.js')}}"></script>
+        <script src="{{url_for('static', filename='js/controllers/dataviewer.ctrl.js')}}"></script>
+        <script src="{{url_for('static', filename='js/config/routes.js')}}"></script>
+        <script src="{{url_for('static', filename='js/app.js')}}"></script>
+
+		<style>
+			#logo-img{
+				width:25%;
+				height:25%;
+				padding-top: 10px;
+				padding-left: 15px;
+			}
+            .input-group-addon {
+                padding: 5px 5px;
+                margin: 3px;
+                margin-left: -25px;
+                width: inherit;
+                background-color: #FFF;
+                border: 0px solid #ccc;
+                position: absolute;
+            }
+		</style>
+    </head>
+
+    <!--
+
+    TABLE OF CONTENTS.
+
+    Use search to find needed section.
+
+    ===================================================================
+
+    |  01. #CSS Links                |  all CSS links and file paths  |
+    |  02. #FAVICONS                 |  Favicon links and file paths  |
+    |  03. #GOOGLE FONT              |  Google font link              |
+    |  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
+    |  05. #BODY                     |  body tag                      |
+    |  06. #HEADER                   |  header tag                    |
+    |  07. #PROJECTS                 |  project lists                 |
+    |  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
+    |  09. #MOBILE                   |  mobile view dropdown          |
+    |  10. #SEARCH                   |  search field                  |
+    |  11. #NAVIGATION               |  left panel & navigation       |
+    |  12. #MAIN PANEL               |  main panel                    |
+    |  13. #MAIN CONTENT             |  content holder                |
+    |  14. #PAGE FOOTER              |  page footer                   |
+    |  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
+    |  16. #PLUGINS                  |  all scripts and plugins       |
+
+    ===================================================================
+
+    -->
+
+    <!-- #BODY -->
+    <!-- Possible Classes
+
+        * 'smart-skin-{SKIN#}'
+        * 'smart-rtl'         - Switch theme mode to RTL (will be avilable from version SmartAdmin 1.5)
+        * 'menu-on-top'       - Switch to top navigation (no DOM change required)
+        * 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+        * 'fixed-header'      - Fixes the header
+        * 'fixed-navigation'  - Fixes the main menu
+        * 'fixed-ribbon'      - Fixes breadcrumb
+        * 'fixed-footer'      - Fixes footer
+        * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+    -->
+    <body class="" ng-view>
+
+        <!--================================================== -->
+
+        <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)
+        <script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
+
+
+
+    </body>
+
+    </html>

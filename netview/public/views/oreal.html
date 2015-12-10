@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<!-- <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css' rel='stylesheet' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js'></script>
+ --><!-- <script src="http://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster.js"></script> -->
+<!-- leaflet and daum -->
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet-src.js"></script>
+<script src="assets/proj4-compressed.js"></script>
+<script src="assets/proj4leaflet.js"></script>
+<script src="assets/Leaflet.KoreanTmsProviders.js"></script>
+<!-- leaflet and daum -->
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
+<!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="assets/css/clusterpies.css" /> -->
+<!-- <script src='assets/bootswatch.js'></script> -->
+<!-- <script src='../bower_components/jquery.maskedinput/dist/jquery.maskedinput.js'></script> -->
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="http://code.highcharts.com/modules/heatmap.js"></script>
+<script src="http://code.highcharts.com/modules/treemap.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+<script src='assets/dark-unica.js'></script>
+<script src="assets/lib_wave_.min.js"></script>
+<link rel="stylesheet" href="assets/lib_wave_.css"/>
+<style>
+  body {padding-top: 70px;}
+  .map { top:0; bottom:0; width:100%; height:700px;}
+  .panel-body {text-align: center;}
+  .container-full {margin: 0 auto;width: 100%;}
+  .edit-input {
+  	display:none;
+  }
+  .edit-input-text {
+  	display:none;
+  	background-color: transparent;
+  	/*background-color: #ffffff;*/
+  	color:#ccc;
+  	border: none;
+  	border-color: transparent;
+  }
+  .the-table {
+    table-layout: fixed;
+    word-wrap: break-word;
+  }
+</style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">DD Insight</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+				<li class="dropdown">
+	        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Group   <span class="caret"></span> <span id="curgroup" style="color:#ffffff;font-weight:bold"></span></a>
+	        <ul class="dropdown-menu" role="menu" id="optrcommenus">
+	        </ul>
+	      </li>
+	      <li class="dropdown">
+	        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Network  <span class="caret"></span> <span id="curnetwork" style="color:#ffffff;font-weight:bold"></span></a>
+	        <ul class="dropdown-menu" role="menu" id="networkmenus">
+	        </ul>
+	      </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Area<span class="caret"></span>    <span id="curArea" style="color:#ffffff;font-weight:bold"></span></a>
+          <ul class="dropdown-menu" role="menu" id="areas">
+            
+          </ul>
+        </li>
+        <!-- <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Period<span class="caret"></span>    <span id="curperiod" style="color:#ffffff;font-weight:bold"></span></a>
+          <ul class="dropdown-menu" role="menu" id="periodmenus">
+            
+          </ul>
+        </li> -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recentness<span class="caret"></span>    <span id="curfactor" style="color:#ffffff;font-weight:bold"></span></a>
+          <ul class="dropdown-menu" role="menu" id="factormenus">
+            
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Movement<span class="caret"></span>    <span id="curmovement" style="color:#ffffff;font-weight:bold"></span></a>
+          <ul class="dropdown-menu" role="menu" id="movementmenus">
+            
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Time<span class="caret"></span>    <span id="curtimezone" style="color:#ffffff;font-weight:bold"></span></a>
+          <ul class="dropdown-menu" role="menu" id="timezonemenus">
+            
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Biasness<span class="caret"></span>    <span id="curbias" style="color:#ffffff;font-weight:bold"></span></a>
+          <ul class="dropdown-menu" role="menu" id="biasmenus">
+            
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Menus <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#" onclick="document.location.href='/oreal'">Cell Quality and Traffic Analysis</a></li>
+            <li><a href="#" onclick="document.location.href='/caction'">Cell Deployment Comparison</a></li>
+            <li class="divider"></li>
+            <li><a href="#" onclick="document.location.href='/omonitor'">Cell Quality Comparison</a></li>
+            <li><a href="#" onclick="document.location.href='/oaction'">Action-Required Cell Review</a></li>
+            <li class="divider"></li>
+            <li><a href="#" onclick="document.location.href='/hmonitor'">Monitor for Cell and WiFi</a></li>
+            <li><a href="#" onclick="document.location.href='/haction'">Action-Required Spot Review</a></li>
+            <li class="divider"></li>
+            <li><a href="#" onclick="document.location.href='/wmonitor'">Wi-Fi Monitor   </a></li>
+            <li class="divider"></li>
+            <li><a href="#" onclick="document.location.href='/logout'"> Logout           </a></li>
+
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-right" id="loading" style="display:none;">
+        <img src="assets/images/ajax-loader.gif"/>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container-full">
+  <div class="row">
+    <div class="col-md-12">
+    <blockquote>
+      <p>Cell Quality and Traffic Analysis</p>
+        <small>Note:  The results in this screen are just to demonstrate the DD Insight features with small subset of data from a certain app in a certain period from the past. The numbers don’t reflect actual network status.</small>
+      </blockquote>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+       <div class="panel panel-default">
+        <div class="panel-body">
+          <table class="table">
+            <tr>
+              <td><span style="color:#a6d96a;">Good</span></td>
+              <td><span style="color:#ffffbf;">Fair</span></td>
+              <td><span style="color:#fdae61;">Poor</span></td>
+              <td><span style="color:#d7191c;">Very Poor</span></td>
+            </tr>
+            <tr id="cmaplegend"></tr>
+          </table>
+        </div>
+       </div> 
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <table class="table"><tr>
+              <td><span style="color:#a6d96a;">Very Little</span></td>
+              <td><span style="color:#ffffbf;">Little</span></td>
+              <td><span style="color:#fdae61;">Little Much</span></td>
+              <td><span style="color:#d7191c;">Much</span></td>
+            </tr>
+            <tr id='tmaplegend'></tr>
+          </table>
+        </div>
+       </div> 
+    </div>
+  </div>  
+
+  <div class="row">
+    <div class="col-md-6">
+       <div class="panel panel-default">
+        <div class="panel-heading">
+           <i class="fa fa-signal"></i>&nbsp; Badness Map
+        </div>
+        <div class="panel-body">
+          <div id='cmap' class='map'></div>
+        </div>
+       </div> 
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+           <i class="fa fa-signal"></i>&nbsp; Traffic Map
+        </div>
+        <div class="panel-body">
+          <div id='tmap' class='map'></div>
+        </div>
+       </div> 
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-12" style="padding-top:20px;"><!-- <div class="jumbotron text-center" ><h2>Detail Information of Selected Area</h2></div> -->
+      <ul class="breadcrumb text-center">              
+        <li class="active" style="color:#ffffff;font-weight:bold;font-size:16px;">Detailed Information of <span id="fullidnm"> cellid </span>  </li>
+      </ul>
+    </div>
+  </div>
+
+	<div class="row"  style="padding-top:20px;">
+
+
+
+    <div class="col-md-6">
+       <div class="panel panel-default">
+        <div class="panel-heading" id="trendc1">
+           <i class="fa fa-signal"></i>&nbsp; Traffic distibution
+        </div>
+        <div class="panel-body">
+          <div id="Trafficdistibution" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div>
+       </div> 
+       <div class="panel panel-default">
+          <div class="panel-heading" id="trendc1">
+             <i class="fa fa-signal"></i>&nbsp; Problem distibution of Bad Sessions
+          </div>
+          <div class="panel-body">
+            <div id="Problemdistibution" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </div>
+        </div> 
+
+        <div class="panel panel-default">
+          <div class="panel-heading" id="trendc1">
+             <i class="fa fa-signal"></i>&nbsp; ToD distibution of Bad Sessions
+          </div>
+          <div class="panel-body">
+            <div id="ToDdistibution" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </div>
+        </div> 
+        <div class="panel panel-default">
+          <div class="panel-heading" id="trendc1">
+             <i class="fa fa-signal"></i>&nbsp; DoW distibution of Bad Sessions
+          </div>
+          <div class="panel-body">
+            <div id="DoWdistibution" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </div>
+        </div> 
+
+        <div class="panel panel-default">
+          <div class="panel-heading" id="trendc1">
+             <i class="fa fa-signal"></i>&nbsp; Previous cellid of Bad Sessions
+          </div>
+          <div class="panel-body">
+            <div id="MovementCelldistibution" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </div>
+        </div> 
+        <div class="panel panel-default">
+          <div class="panel-heading" id="trendc1">
+             <i class="fa fa-signal"></i>&nbsp; Model distibution of Bad Sessions
+          </div>
+          <div class="panel-body">
+            <div id="modeldistribution" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" id="trendc1">
+             <i class="fa fa-signal"></i>&nbsp; OS distibution of Bad Sessions
+          </div>
+          <div class="panel-body">
+            <div id="osverdistribution" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </div>
+        </div>
+<!--         <div class="panel panel-default">
+          <div class="panel-heading" id="trendc1">
+             <i class="fa fa-signal"></i>&nbsp; App distibution of Bad Sessions
+          </div>
+          <div class="panel-body">
+            <div id="pkgdistribution" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </div>
+        </div> -->
+    </div>
+
+    <div class="col-md-6">
+       <div class="panel panel-default">
+        <div class="panel-heading" id="trendc1">
+           <i class="fa fa-signal"></i>&nbsp; TCI & RSRP/RSNR
+        </div>
+        <div class="panel-body">
+          <div id="tcindicator" style="min-width: 310px; height: 200px; margin: 0 auto; color:yellow; font-size:80px;"></div>
+          <div id="rsrqindicator" style="min-width: 310px; height: 200px; margin: 0 auto; color:#66FF33; font-size:80px;"></div>
+        </div>
+      </div> 
+      <div class="panel panel-default">
+          <div class="panel-heading"  id="tablec1">
+              Bad Session List  <!-- <span id="fullidnm"></span>  -->
+          </div>
+          <div class="panel-body">
+              <table class="table table-striped table-hover the-table">
+                <thead>
+                  <tr>
+                    <td><b>SessionID</b></td>
+                    <td><b>DeviceID</b></td>
+                    <td><b>Date</b></td>
+                    <td><b>PKG</b></td>
+                    <td><b>Model</b></td>
+                    <td><b>StartFail</b></td>
+                    <td><b>LargePause</b></td>
+                    <td><b>CellUsage(MB)</b></td>
+                  </tr>
+                </thead>
+                <tbody id='detailinfo'>
+
+                </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>	
+</body>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="js/oreal.js"></script>
+
+
+</html>

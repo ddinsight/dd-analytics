@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<!-- leaflet and daum -->
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet-src.js"></script>
+<script src="assets/proj4-compressed.js"></script>
+<script src="assets/proj4leaflet.js"></script>
+<script src="assets/Leaflet.KoreanTmsProviders.js"></script>
+<!-- leaflet and daum -->
+
+<!-- <script src="http://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster.js"></script> -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
+<!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="assets/css/clusterpies.css" /> -->
+<!-- <script src='assets/bootswatch.js'></script> -->
+<!-- <script src='../bower_components/jquery.maskedinput/dist/jquery.maskedinput.js'></script> -->
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="http://code.highcharts.com/modules/heatmap.js"></script>
+<script src="http://code.highcharts.com/modules/treemap.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+<script src='assets/dark-unica.js'></script>
+<script src="assets/lib_wave_.min.js"></script>
+<link rel="stylesheet" href="assets/lib_wave_.css"/>
+<style>
+body {padding-top: 70px;}
+#cmap { top:0; bottom:0; width:100%; height:700px;}
+#wmap { top:0; bottom:0; width:100%; height:700px;}
+.panel-body {text-align: center;}
+.container-full {margin: 0 auto;width: 100%;}
+.edit-input {
+	display:none;
+}
+.edit-input-text {
+	display:none;
+	background-color: transparent;
+	/*background-color: #ffffff;*/
+	color:#ccc;
+	border: none;
+	border-color: transparent;
+}
+
+</style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">DD Insight</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+				<li class="dropdown">
+	        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Group   <span class="caret"></span> <span id="curgroup" style="color:#ffffff;font-weight:bold"></span></a>
+	        <ul class="dropdown-menu" role="menu" id="optrcommenus">
+	        </ul>
+	      </li>
+	      <li class="dropdown">
+	        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Network  <span class="caret"></span> <span id="curnetwork" style="color:#ffffff;font-weight:bold"></span></a>
+	        <ul class="dropdown-menu" role="menu" id="networkmenus">
+	        </ul>
+	      </li>
+        <li class="dropdown">
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Area  <span class="caret"></span>   <span id="curArea" style="color:#ffffff;font-weight:bold"></span> </a>
+          <ul class="dropdown-menu" role="menu" id="areas"></ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Menus <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#" onclick="document.location.href='/oreal'">Cell Quality and Traffic Analysis</a></li>
+            <li><a href="#" onclick="document.location.href='/caction'">Cell Deployment Comparison</a></li>
+            <li class="divider"></li>
+            <li><a href="#" onclick="document.location.href='/omonitor'">Cell Quality Comparison</a></li>
+            <li><a href="#" onclick="document.location.href='/oaction'">Action-Required Cell Review</a></li>
+            <li class="divider"></li>
+            <li><a href="#" onclick="document.location.href='/hmonitor'">Monitor for Cell and WiFi</a></li>
+            <li><a href="#" onclick="document.location.href='/haction'">Action-Required Spot Review</a></li>
+            <li class="divider"></li>
+            <li><a href="#" onclick="document.location.href='/wmonitor'">Wi-Fi Monitor   </a></li>
+            <li class="divider"></li>
+            <li><a href="#" onclick="document.location.href='/logout'"> Logout           </a></li>
+
+          </ul>
+        </li>
+
+      </ul>
+      <form class="navbar-form navbar-right" id="loading" style="display:none;">
+        <img src="assets/images/ajax-loader.gif"/>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container-full">
+	<div class="row">
+    <div class="col-md-12">
+    <blockquote>
+    	<p>Action-Required Cell Review</p>
+        <small>Note:  The results in this screen are just to demonstrate the DD Insight features with small subset of data from a certain app in a certain period from the past. The numbers don’t reflect actual network status.</small>
+      </blockquote>
+    </div>
+  </div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			  	
+			  	
+			    <!-- <h3 style="padding-top:0px;" id="cellcnt"> - </h3>
+			  	<span style="font-size:16px;" id='scopeofcell'> </span> -->
+
+			  	<!-- $('#'+type+'cnt').html('<span style="color:#a6d96a;">'+acquire('1')+'</span> / <span style="color:#ffffbf;">'+acquire('2')+'</span> / <span style="color:#fdae61;">'+acquire('3')+'</span> / <span style="color:#d7191c;">'+acquire('4')+'</span>'); -->
+			  	<table class="table" style="padding-top:20px;">
+			  		<tbody>
+			  		<tr>
+				  		<td style="vertical-align:middle;" rowspan="3"><h1 style="font-size:62px;" id="c1name">-</h1></td><td colspan="4"><h1 style="text-align: center;" class="text-warning"> Action Required = <span id="c1action">0</span> spots</h1></td>
+			  		</tr>			  		
+			  		<tr id="quanlegend">
+				  		<!-- <td style="color:a6d96a;font-size:16px;"><span style="color:#a6d96a;" id="pG">Good(10%)</span></td>
+				  		<td style="color:ffffbf;font-size:16px;"><span style="color:#ffffbf;" id="pF">Fair(25%)</span></td>
+				  		<td style="color:fdae61;font-size:16px;"><span style="color:#fdae61;" id="pP">Poor(50%)</span></td>
+				  		<td style="color:d7191c;font-size:16px;"><span style="color:#d7191c;" id="pV">Very Poor(100%)</span></td> -->
+			  		</tr>
+			  		<tr id="quanc1">
+				  		<!-- <td style="font-size:16px;"><span style="color:#a6d96a;" id="pvG">100</span></td>
+				  		<td style="font-size:16px;"><span style="color:#ffffbf;" id="pvF">20</span></td>
+				  		<td style="font-size:16px;"><span style="color:#fdae61;" id="pvP">30</span></td>
+				  		<td style="font-size:16px;"><span style="color:#d7191c;" id="pvV">12</span></td> -->
+			  		</tr>
+			  		</tbody>
+			  	</table>
+			  </div>
+			</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			  	<table class="table" style="padding-top:20px;">
+			  		<tbody>
+			  		<tr>
+				  		<td style="vertical-align:middle;" rowspan="3"><h1 style="font-size:62px;" id="c2name">-</h1></td><td colspan="4"><h1 style="text-align: center;" class="text-warning"> Action Required = <span id="c2action">0</span> spots</h1></td>
+			  		</tr>			  		
+			  		<tr id="quanlegend">
+				  		<!-- <td style="color:a6d96a;font-size:16px;"><span style="color:#a6d96a;" id="pG">Good(10%)</span></td>
+				  		<td style="color:ffffbf;font-size:16px;"><span style="color:#ffffbf;" id="pF">Fair(25%)</span></td>
+				  		<td style="color:fdae61;font-size:16px;"><span style="color:#fdae61;" id="pP">Poor(50%)</span></td>
+				  		<td style="color:d7191c;font-size:16px;"><span style="color:#d7191c;" id="pV">Very Poor(100%)</span></td> -->
+			  		</tr>
+			  		<tr id="quanc2">
+				  		<!-- <td style="font-size:16px;"><span style="color:#a6d96a;" id="pvG">100</span></td>
+				  		<td style="font-size:16px;"><span style="color:#ffffbf;" id="pvF">20</span></td>
+				  		<td style="font-size:16px;"><span style="color:#fdae61;" id="pvP">30</span></td>
+				  		<td style="font-size:16px;"><span style="color:#d7191c;" id="pvV">12</span></td> -->
+			  		</tr>
+			  		</tbody>
+			  	</table>
+			  </div>
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div id='cmap'></div>
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<div id='wmap'></div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="padding-top:20px;">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+        <div class="panel-heading" id="tbltitlec1">
+            <!-- <i class="fa fa-signal"></i> Top 10 Worst Cellular Points -->
+        </div>
+			  <div class="panel-body">
+			  	<table class="table table-striped table-hover ">
+					  <thead>
+					    <tr>
+					      <td><b>IDs</b></td>
+					      <td><b>Interruption</b></td>
+					      <td><b>Address</b></td>
+					    </tr>
+					  </thead>
+				    <tbody id='tblbodyc1'>
+					    
+					  </tbody>
+					</table>
+			  </div>
+			</div>			
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+        <div class="panel-heading" id="tbltitlec2">
+            <!-- <i class="fa fa-wifi"></i> Top 10 Worst Wifi Points -->
+        </div>
+			  <div class="panel-body">
+			  	<table class="table table-striped table-hover">
+					  <thead align="center">
+					    <tr align="center">
+					      <td align="center"><b>IDs</b></td>
+					      <td align="center"><b>Interruption Metric</b></td>
+					      <td align="center"><b>Address</b></td>
+					    </tr>
+					  </thead>
+				    <tbody id='tblbodyc2'>
+					    
+					  </tbody>
+					</table>
+			  </div>
+			</div>			
+		</div>
+	</div>
+	<div class="row" style="padding-top:20px;">
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+        <div class="panel-heading" id="charttitlec1">
+            <!-- <i class="fa fa-signal"></i> Celluar Analysis by Time in This Area -->
+        </div>
+			  <div class="panel-body">
+			  	<div id="chartbodyc1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+			  </div>
+			</div>
+		</div>
+
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+        <div class="panel-heading" id="charttitlec2">
+            <!-- <i class="fa fa-wifi"></i>  Wifi Analysis by Time in This Area -->
+        </div>
+			  <div class="panel-body">
+			  	<div id="chartbodyc2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+			  </div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row" style="padding-top:20px;">
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+        <div class="panel-heading" id="treemaptitlec1">
+            <!-- <i class="fa fa-signal"></i> Celluar Analysis by Device in This Area -->
+        </div>
+			  <div class="panel-body">
+			  	<div id="treemapbodyc1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+			  </div>
+			</div>
+		</div>
+
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+        <div class="panel-heading" id="treemaptitlec2">
+            <!-- <i class="fa fa-signal"></i> Wifi Analysis by Device in This Area -->
+        </div>
+			  <div class="panel-body">
+			  	<div id="treemapbodyc2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+			  </div>
+			</div>
+		</div>
+	</div>		
+
+</div>	
+</body>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="js/oaction.js"></script>
+
+
+</html>
