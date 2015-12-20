@@ -55,10 +55,7 @@ The main component of the Netview sub-project is an analysis tool optimized for 
 ### 
 
 **Getting Started**
-> 1. download source code
-> ```
-> git clone http://github.com/
-> ```
+> 1. Git clone (Download source code)
 > 2. install package
 > ```
 > npm install -d
@@ -113,21 +110,18 @@ This is a general purpose tool or BI that enables extensible programming of feat
 
 ----------
 
+----------
 
 ### 
-**Authors & Maintainers**
-> - Jay Lee (Batch)
+#### **Authors & Contributors**
+> - Kwangju Lee (Batch)
 > - Ethan Lee (Netview, Dataview)
-
-
-### 
-**Contributors**
-> Aram Seo : the special contributor in Dataview visualization
-> [See other contributors on Github](http://)
+> - Aram Seo : special contribution to Dataview in visualization
+> - [See contributors on Github](http://)
 
 ### 
 **License**
-		> dd-analytics is released under [Apache v2 License](http://)`t7g6fg
+> dd-analytics is released under [Apache v2 License](http://)
 
 
 ### 
