@@ -120,8 +120,9 @@ This is a general purpose tool or BI that enables extensible programming of feat
 > - [See contributors on Github](http://)
 
 ### 
-**License**
+#### **License**
 > dd-analytics is released under [Apache v2 License](http://)
 
-
+---
 ### 
+Copyright 2015 AirPlug Inc.
