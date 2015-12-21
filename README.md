@@ -20,7 +20,7 @@ The heart of the CoreBatch sub-project is the batch-based logical component perf
 **Getting Started**
 > - Construct Hadoop file system (HDFS) and Spark clusters on your server farm
 > - Install Apache Spark on your local computer
-> - Download the codes from the sub-project in ['corebatch']() directory
+> - Git clone (or download the codes from the sub-project - [corebatch](https://github.com/ddinsight/dd-analytics/tree/master/corebatch) )
 > - Run
 
 
@@ -95,14 +95,14 @@ This is a general purpose tool or BI that enables extensible programming of feat
 > This can be used to query Raw data on DataMart directly using SQL queries
 
 **Getting Started**
-> 1. Git clone 
-> 2. install mysql and python
-> 3. install mysql-python with pip or a package installer on your os
-> 4. execute ./wave++/web/setup.bat
-> 5. create a database and a user
+> 1. Git clone (Download source code)
+> 2. Install mysql and python
+> 3. Install mysql-python with pip or a package installer on your os
+> 4. Execute ./wave++/web/setup.bat
+> 5. Create a database and a user
 > * execute *create.sql* on the created user account
 > * set *SQLALCHEMY_DATABASE_URI* within  *web/config.py* to the created connection info for mysql (URL, port, username, password)
-> 6. start server
+> 6. Start server
 > ```
 > python run.py
 > ```
@@ -113,10 +113,13 @@ This is a general purpose tool or BI that enables extensible programming of feat
 ----------
 
 ### 
-#### **Authors & Contributors**
-> - Kwangju Lee (Batch)
+#### **Authors**
+> - Kwangju Lee (CoreBatch)
 > - Ethan Lee (Netview, Dataview)
-> - Aram Seo : special contribution to Dataview in visualization
+
+### 
+#### **Contributors**
+> - Aram Seo (special contribution to Dataview in visualization)
 > - [See contributors on Github](http://)
 
 ### 
