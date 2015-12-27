@@ -83,16 +83,16 @@ The main component of the Netview sub-project is an analysis tool optimized for 
 This is a general purpose tool or BI that enables extensible programming of feature of data selection, map- and chart-based representation and automatic report generation. The programming will enable you to use the app-based data generated from the framework such as DD Insight not only for network but also for various other analyses encompassing services and contents.
 
 **Features**
-> **Custom Report Generator:**	
-> This is a tool you can use to add the generated charts as widgets and construct window modules.
-> **Chart Generator: **
->This is a tool you can use to visualize the data on DataMart as charts using fragmented SQL queries
-> **Chart Viewer:**	
-> This is a tool for visualizations of data fragments from Chat Generator by merging them and represent them as various charts.
-> **Map Board:**	
-> This is a tool for visualization of various data fragments that are shown on the Map Viewer by mashing them up on the map
-> **Data Viewer:**	
-> This can be used to query Raw data on DataMart directly using SQL queries
+> **Custom Report Generator:**   
+> This is a tool you can use to add the generated charts as widgets and construct window modules.   
+> **Chart Generator: **   
+>This is a tool you can use to visualize the data on DataMart as charts using fragmented SQL queries   
+> **Chart Viewer:**   	
+> This is a tool for visualizations of data fragments from Chat Generator by merging them and represent them as various charts.   
+> **Map Board:**	   
+> This is a tool for visualization of various data fragments that are shown on the Map Viewer by mashing them up on the map.   
+> **Data Viewer:**   	
+> This can be used to query Raw data on DataMart directly using SQL queries.   
 
 **Getting Started**
 > 1. Git clone (Download source code)
