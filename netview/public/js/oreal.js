@@ -46,7 +46,7 @@ var cmap = L.map('cmap', {
 						continuousWorld: true,
 						worldCopyJump: false,
 						zoomControl: true
-					}).setView([37.49800253054263,127.02608766689583], 4)
+					}).setView([37.49800253054263,127.02608766689583], 4);
 
 var baseLayers1 = {
 	'<h6>Street</h6>': L.Proj.TileLayer.TMS.provider('DaumMap.Street').addTo(cmap),

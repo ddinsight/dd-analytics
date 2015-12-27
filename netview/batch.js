@@ -1,10 +1,7 @@
 var http = require('http');
 var request = require('sync-request');
-// var request = require('then-request');
-// var url = 'http://netcurve.airplug.com:3333/api/v1.8/oreal/map/lte/newfactor/list?recent=0.7&sw=37.197518%2C126.182098&ne=37.959357%2C127.922058';
 
-
-
+SVRADDR = 'http://example.com:1234; 
 
 function getJsonfromUrl(url, callback){
 	http.get(url, function(res){
@@ -53,7 +50,7 @@ function getJsonFromUrlSync(url, callback){
 
 
 function orealList(){
-	var url = 'http://netcurve.airplug.com:3333/api/v1.8/oreal/map/lte/newfactor/list?recent=0.7&sw=37.197518%2C126.182098&ne=37.959357%2C127.922058';
+	var url = SVRADDR + '/api/v1.8/oreal/map/lte/newfactor/list?recent=0.7&sw=37.197518%2C126.182098&ne=37.959357%2C127.922058';
 	getJsonFromUrlSync(url, orealParser);
 
 }
@@ -77,28 +74,28 @@ function orealParser(data){
 function log(d){ console.log(d); }
 
 function movement(fullid){
-	var url = 'http://netcurve.airplug.com:3333/api/v1.8/oreal/map/fullid/badness/movement?fullid=' + fullid;
+	var url = SVRADDR + '/api/v1.8/oreal/map/fullid/badness/movement?fullid=' + fullid;
 	getJsonFromUrlSync(url, log);
 }
 
 function nearcell(fullid){
-	var url = 'http://netcurve.airplug.com:3333/api/v1.8/oreal/map/fullid/nearcell?fullid=' + fullid;
+	var url = SVRADDR + '/api/v1.8/oreal/map/fullid/nearcell?fullid=' + fullid;
 	getJsonFromUrlSync(url, log);
 }
 function heat(fullid){
-	var url = 'http://netcurve.airplug.com:3333/api/v1.8/oreal/heat/cell/list?fullid=' + fullid;
+	var url = SVRADDR + '/api/v1.8/oreal/heat/cell/list?fullid=' + fullid;
 	getJsonFromUrlSync(url, log);
 }
 function wifiloc(fullid){
-	var url = 'http://netcurve.airplug.com:3333/api/v1.8/oreal/wifiloc/cell/list?fullid=' + fullid;
+	var url = SVRADDR + '/api/v1.8/oreal/wifiloc/cell/list?fullid=' + fullid;
 	getJsonFromUrlSync(url, log);
 }
 function detail(fullid){
-	var url = 'http://netcurve.airplug.com:3333/api/v1.8/oreal/map/fullid/detail?fullid=' + fullid;
+	var url = SVRADDR + '/api/v1.8/oreal/map/fullid/detail?fullid=' + fullid;
 	getJsonFromUrlSync(url, log);
 }
 function indicator(fullid){
-	var url = 'http://netcurve.airplug.com:3333/api/v1.8/oreal/map/fullid/indicator?fullid=' + fullid;
+	var url = SVRADDR + '/api/v1.8/oreal/map/fullid/indicator?fullid=' + fullid;
 	getJsonFromUrlSync(url, log);
 }
 

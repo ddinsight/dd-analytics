@@ -147,7 +147,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `opid`, `opnm`, `pwd`, `email`, `crtdt`, `crtid`, `orgprefix`, `svcname`)
 VALUES
-  (19, 'a1234@airplug.com', 'ethanlees', '$6$rounds=100398$oyiD7kdbvwv.xpjt$QwK9/V90r5G7a7thQjRMFHuFWqLHKdy53/afbx1qx5FIMWC/3c2yE00DC0VjFD5DmcsRGdl5FU.xoiH3s6MyL/', 'a1234@airplug.com', NULL, NULL, 'otm', 'wave');
+  (19, 'a1234@example.com', 'ethanlees', '$6$rounds=100398$oyiD7kdbvwv.xpjt$QwK9/V90r5G7a7thQjRMFHuFWqLHKdy53/afbx1qx5FIMWC/3c2yE00DC0VjFD5DmcsRGdl5FU.xoiH3s6MyL/', 'a1234@example.com', NULL, NULL, 'otm', 'wave');
 
 
 CREATE TABLE `menus_users` (
@@ -162,16 +162,16 @@ CREATE TABLE `menus_users` (
 
 INSERT INTO `menus_users` (`menuid`, `userid`, `userseq`, `crtdt`, `crtid`)
 VALUES
-  (16, 'a1234@airplug.com', 19, NULL, NULL),
-  (18, 'a1234@airplug.com', 19, NULL, NULL),
-  (15, 'a1234@airplug.com', 19, NULL, NULL),
-  (19, 'a1234@airplug.com', 19, NULL, NULL),
-  (14, 'a1234@airplug.com', 19, NULL, NULL),
-  (20, 'a1234@airplug.com', 19, NULL, NULL),
-  (13, 'a1234@airplug.com', 19, NULL, NULL),
-  (21, 'a1234@airplug.com', 19, NULL, NULL),
-  (12, 'a1234@airplug.com', 19, NULL, NULL),
-  (17, 'a1234@airplug.com', 19, NULL, NULL);
+  (16, 'a1234@example.com', 19, NULL, NULL),
+  (18, 'a1234@example.com', 19, NULL, NULL),
+  (15, 'a1234@example.com', 19, NULL, NULL),
+  (19, 'a1234@example.com', 19, NULL, NULL),
+  (14, 'a1234@example.com', 19, NULL, NULL),
+  (20, 'a1234@example.com', 19, NULL, NULL),
+  (13, 'a1234@example.com', 19, NULL, NULL),
+  (21, 'a1234@example.com', 19, NULL, NULL),
+  (12, 'a1234@example.com', 19, NULL, NULL),
+  (17, 'a1234@example.com', 19, NULL, NULL);
 
 
   -- Create syntax for TABLE 'dsquery'

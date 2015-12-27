@@ -15,7 +15,7 @@ var areas = [
   // {"center": {"lat":35.86639547185584 ,"lng":128.60615015029907 ,"zoom":4 }, "name":"대구", "boundaries":{"ne":{"lat":36.039809841293156,"lng":128.8110580507472},  "sw":{"lat":35.705969666916374,"lng":128.41829682027844}}},
   // {"center": {"lat":36.33192920688755 ,"lng":127.40209579467772 ,"zoom":4 }, "name":"대전", "boundaries":{"ne":{"lat":36.54454603222065, "lng":127.54419708883313}, "sw":{"lat":36.212850099635745,"lng":127.15143585836438}}},
   // {"center": {"lat":33.50196783091423 ,"lng":126.53814554214476 ,"zoom":4 }, "name":"제주", "boundaries":{"ne":{"lat":33.67006843120305, "lng":127.13996887207031}, "sw":{"lat":33.09671883650731, "lng":125.88340759277342}}}
-]
+];
 
 areas.forEach(function(d){
   $('#areas').append('<li><a href="#" onclick="_loc('+d['center']['lat']+','+d['center']['lng']+','+d['center']['zoom']+')">'+d['name']+'</a></li>');
@@ -369,7 +369,7 @@ $.getJSON(cellwfurl, {
 	setTimeout(function(){ loop3 = true;  $('#loading').css('display', 'none');}, 500);
 });
 
-var resulttrendurl = '/api/v1.0/chart/resultTrend'
+var resulttrendurl = '/api/v1.0/chart/resultTrend';
 $.getJSON(resulttrendurl, {
 	'sw' : Math.floor(sw.getLat()*1000000)/1000000+','+Math.floor(sw.getLng()*1000000)/1000000, 'ne' : Math.floor(ne.getLat()*1000000)/1000000+','+Math.floor(ne.getLng()*1000000)/1000000
 }).done(function(data){
