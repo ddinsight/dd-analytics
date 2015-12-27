@@ -85,7 +85,7 @@ This is a general purpose tool or BI that enables extensible programming of feat
 **Features**
 > **Custom Report Generator:**   
 > This is a tool you can use to add the generated charts as widgets and construct window modules.   
-> **Chart Generator: **   
+> **Chart Generator:**   
 >This is a tool you can use to visualize the data on DataMart as charts using fragmented SQL queries   
 > **Chart Viewer:**   	
 > This is a tool for visualizations of data fragments from Chat Generator by merging them and represent them as various charts.   
