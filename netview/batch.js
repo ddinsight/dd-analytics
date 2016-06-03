@@ -1,7 +1,7 @@
 var http = require('http');
 var request = require('sync-request');
 
-SVRADDR = 'http://example.com:1234; 
+SVRADDR = 'http://example.com:1234'; 
 
 function getJsonfromUrl(url, callback){
 	http.get(url, function(res){
